@@ -1,4 +1,4 @@
-#Importando libreri�as necesarias
+#Importando libreri­as necesarias
 import requests
 import os
 import csv
@@ -7,12 +7,12 @@ import random
 from bs4 import BeautifulSoup as bs
 from info_casa import find_information
 
-#Current directory where is located the script
+#El actual directorio donde se escribirá el csv
 currentDir = os.path.dirname(__file__)
 filename = "idealista_info_casa.csv"
 filePath = os.path.join(currentDir, filename)
 
-#El código postal que vamos a utilizar
+#El cÃ³digo postal que vamos a utilizar
 cp_Sevilla = '41002'
 url = f'https://www.idealista.com/buscar/venta-viviendas/{cp_Sevilla}/'
 
@@ -33,8 +33,12 @@ header = {
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36'}
+
+#Realizamos la petición
 r = requests.get(url, headers = header)
 soup = bs(r.text,'lxml')
+
+#Buscamos las id de los inmuebles, que se encuentran en articles
 articles = soup.find("div",{"class":"container"}).find("main", {"class":"listing-items"}).find_all("article")
 id_inmueble = [article.get("data-adid") for article in articles]
 
