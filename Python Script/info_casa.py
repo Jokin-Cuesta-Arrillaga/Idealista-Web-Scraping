@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 
+#Función con la que obtendremos los datos de los inmuebles
 def find_information(id,header):
 
     """
